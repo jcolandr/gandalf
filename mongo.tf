@@ -10,6 +10,7 @@ variable "ami_id" {
 
 provider "aws" {
   region = "us-east-2" 
+}
 
 resource "aws_instance" "mongo" {
   ami           = var.ami_id
