@@ -20,7 +20,7 @@ resource "aws_instance" "mongo" {
 
   user_data = <<-EOC
               #!/bin/bash
-              cat > /etc/yum.repos.d/mongodb-org-7.0.repo << EOF
+              cat <<EOF > /etc/yum.repos.d/mongodb-org-7.0.repo 
                 [mongodb-org-7.0]
                 name=MongoDB Repository
                 baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/
