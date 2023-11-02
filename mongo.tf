@@ -74,3 +74,4 @@ resource "aws_network_interface_sg_attachment" "example" {
 output "instance_public_ip" {
   value = aws_instance.example.public_ip
 }
+
