@@ -18,16 +18,22 @@ resource "aws_instance" "mongo" {
   key_name      = "jdc-aws" 
   subnet_id     = "subnet-0d22cfd6dfa91dd5e" 
 
-  user_data = <<-EOF
+  user_data = <<-EOC
               #!/bin/bash
+              cat > /etc/yum.repos.d/mongodb-org-7.0.repo << EOF
+                [mongodb-org-7.0]
+                name=MongoDB Repository
+                baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/
+                gpgcheck=1
+                enabled=1
+                gpgkey=https://www.mongodb.org/static/pgp/server-7.0.asc
+                EOF
               sudo yum update -y
-              sudo amazon-linux-extras install epel -y
-              sudo yum install -y mongodb-org-${var.mongodb_version}
-
+              sudo yum install -y mongodb-org-${var.mongodb_version} mongodb-org-database-${var.mongodb_version} mongodb-org-server-${var.mongodb_version}
               # Start MongoDB and enable it on system startup
               sudo systemctl start mongod
               sudo systemctl enable mongod
-              EOF
+              EOC
 
   tags = {
     Name = "MongoDB-Instance"
