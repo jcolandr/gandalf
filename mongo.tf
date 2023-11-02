@@ -9,14 +9,14 @@ variable "ami_id" {
 }
 
 provider "aws" {
-  region = "us-east-1" # Change this to your desired AWS region
+  region = "us-east-2" # Change this to your desired AWS region
 }
 
 resource "aws_instance" "example" {
   ami           = var.ami_id
   instance_type = "t2.micro"
-  key_name      = "your-key-pair" # Replace with your SSH key pair
-  subnet_id     = "your-subnet-id" # Replace with your VPC subnet ID
+  key_name      = "jdc-aws" 
+  subnet_id     = "subnet-0d22cfd6dfa91dd5e" 
 
   user_data = <<-EOF
               #!/bin/bash
