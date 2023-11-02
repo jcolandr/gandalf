@@ -17,16 +17,7 @@ resource "aws_instance" "mongo" {
   instance_type = "t2.micro"
   key_name      = "jdc-aws" 
   subnet_id     = "subnet-0d22cfd6dfa91dd5e" 
-
-  provisioner "file" {
-        source      = "mongo-install.sh"
-        destination = "/home/ec2-user/mongo-install.sh"
-  }
-  user_data = <<-EOF
-            #!/bin/bash
-            sudo chmod +x /home/ec2-user/mongo-install.sh
-            ./home/ec2-user/mongo-install.sh
-            EOF
+  iam_instance_profile = aws_iam_instance_profile.highly_privileged_instance_profile.name
 
   tags = {
     Name = "MongoDB-Instance"
@@ -68,6 +59,38 @@ resource "aws_security_group" "mongo-sg" {
 resource "aws_network_interface_sg_attachment" "mongo-sg" {
   security_group_id    = aws_security_group.mongo-sg.id
   network_interface_id = aws_instance.mongo.primary_network_interface_id
+}
+
+resource "aws_iam_instance_profile" "highly_privileged_instance_profile" {
+  name = "highly-privileged-instance-profile"
+}
+
+resource "aws_iam_role" "highly_privileged_role" {
+  name = "highly-privileged-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Effect = "Allow",
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy_attachment" "highly_privileged_policy_attachment" {
+  name       = "highly-privileged-policy-attachment"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess" # Replace with the desired policy or permissions
+  roles      = [aws_iam_role.highly_privileged_role.name]
+}
+
+resource "aws_iam_instance_profile" "highly_privileged_instance_profile" {
+  name = "highly-privileged-instance-profile"
+  role = aws_iam_role.highly_privileged_role.name
 }
 
 output "instance_public_ip" {
