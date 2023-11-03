@@ -54,7 +54,7 @@ resource "aws_iam_role" "hp" {
 
 resource "aws_iam_policy_attachment" "hp" {
   name       = "hp-policy-attachment"
-  policy_arn = aws_iam_policy.custom_policy.arn, aws_iam_policy.custom_policy_s3.arn
+  policy_arn = aws_iam_policy.custom_policy.arn
   roles      = [aws_iam_role.hp.name]
 }
 
