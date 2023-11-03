@@ -34,6 +34,7 @@
 
 resource "aws_iam_instance_profile" "hp" {
   name = "hp-instance-profile"
+  role = aws_iam_role.hp.name
 }
 
 resource "aws_iam_policy" "custom_policy" {
@@ -75,7 +76,4 @@ resource "aws_iam_policy_attachment" "hp" {
   roles      = [aws_iam_role.hp.name]
 }
 
-resource "aws_iam_instance_profile_role_attachment" "hp" {
-  instance_profile = aws_iam_instance_profile.hp.name
-  role            = aws_iam_role.hp.name
-}
+
