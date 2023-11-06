@@ -6,7 +6,7 @@ resource "aws_instance" "mongo" {
   iam_instance_profile = aws_iam_instance_profile.hp.name
 
   tags = {
-    Name = "MongoDB-Instance"
+    Name = "MongoDB-VM"
   }
 }
 
