@@ -29,10 +29,10 @@ output "instance_internal_ip" {
   value = aws_instance.mongo.internal_ip
 }
 
-output "lb_ip" {
+output "nginx_ip" {
   value = kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.hostname
 }
 
-output "lb_ip" {
+output "tasky_ip" {
   value = kubernetes_service.tasky.status.0.load_balancer.0.ingress.0.hostname
 }
