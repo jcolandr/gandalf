@@ -21,7 +21,7 @@ resource "kubernetes_deployment" "node" {
       }
       spec {
         container {
-          image = "jcolandro/taskapp:1.0"
+          image = "jcolandro/taskapp:1.1"
           name  = "web"
 
           port {
