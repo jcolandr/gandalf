@@ -33,6 +33,6 @@ output "nginx_ip" {
   value = kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.hostname
 }
 
-output "tasky_ip" {
-  value = kubernetes_service.tasky.status.0.load_balancer.0.ingress.0.hostname
+output "node_ip" {
+  value = kubernetes_service.node.status.0.load_balancer.0.ingress.0.hostname
 }
