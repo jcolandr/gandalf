@@ -21,22 +21,22 @@ resource "kubernetes_deployment" "node" {
       }
       spec {
         container {
-          image = "ijason/nodejs-sample:latest"
+          image = "jcolandro/taskapp:1.0"
           name  = "web"
 
           port {
-            container_port = 3000
+            container_port = 5000
           }
 
-          env {
-            name = "MONGO_HOST"
-            value = "3.145.34.154"
-          }
+          # env {
+          #   name = "MONGO_HOST"
+          #   value = "3.145.34.154"
+          # }
           
-          env {
-            name = "MONGO_PORT"
-            value = "27017"
-          }
+          # env {
+          #   name = "MONGO_PORT"
+          #   value = "27017"
+          # }
 
           resources {
             limits = {
@@ -64,7 +64,7 @@ resource "kubernetes_service" "node" {
     }
     port {
       port        = 80
-      target_port = 3000
+      target_port = 5000
     }
 
     type = "LoadBalancer"
