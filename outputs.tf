@@ -21,7 +21,10 @@ output "cluster_name" {
   value       = module.eks.cluster_name
 }
 
-
 output "instance_public_ip" {
   value = aws_instance.mongo.public_ip
+}
+
+output "lb_ip" {
+  value = kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.hostname
 }
