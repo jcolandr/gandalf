@@ -30,7 +30,7 @@ resource "kubernetes_deployment" "node" {
 
           env {
             name = "MONGO_HOST"
-            value = "frodo:baggins@3.145.34.154"
+            value = "3.145.34.154"
           }
           
           env {
