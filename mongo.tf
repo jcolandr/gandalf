@@ -11,7 +11,7 @@ resource "aws_instance" "mongo" {
 }
 
 # Example security group to allow SSH and MongoDB access
-resource "aws_security_group" "mongo-vm-sg" {
+resource "aws_security_group" "mongo" {
   name        = "mongo-vm-security-group"
   description = "Allow SSH and MongoDB access"
 
@@ -42,8 +42,8 @@ resource "aws_security_group" "mongo-vm-sg" {
 }
 
 # Associate the security group with the EC2 instance
-resource "aws_network_interface_sg_attachment" "mongo-vm-sg-attach" {
-  security_group_id    = aws_security_group.mongo-vm-sg.id
+resource "aws_network_interface_sg_attachment" "mongo" {
+  security_group_id    = aws_security_group.mongo.id
   network_interface_id = aws_instance.mongo.primary_network_interface_id
 }
 
