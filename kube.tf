@@ -2,7 +2,7 @@
 
 
 data "aws_eks_cluster" "cluster" {
-  name = wizard-burial-ground
+  name = "wizard-burial-ground"
 }
 
 provider "kubernetes" {
