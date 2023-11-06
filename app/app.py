@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import socket
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://frodo:baggins@3.145.34.154:27017/gandalf"
+app.config["MONGO_URI"] = "mongodb+srv://frodo:baggins@10.0.100.66:27017/gandalf"
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 mongo = PyMongo(app)
 db = mongo.db
