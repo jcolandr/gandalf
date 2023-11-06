@@ -29,11 +29,12 @@ resource "kubernetes_deployment" "tasky" {
           }
 
           env {
-            name = "MONGODB_URI	"
+            name = "MONGODB_URI"
             value = "mongodb://frodo:baggins@3.145.34.154:27017"
           }
+          
           env {
-            name = "SECRET_KEY	"
+            name = "SECRET_KEY"
             value = "secret123"
           }
 
