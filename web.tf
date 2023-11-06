@@ -1,8 +1,8 @@
-resource "kubernetes_deployment" "node" {
+resource "kubernetes_deployment" "flask" {
   metadata {
-    name = "scalable-node-example"
+    name = "scalable-flask-example"
     labels = {
-      App = "ScalablenodeExample"
+      App = "ScalableflaskExample"
     }
   }
 
@@ -10,13 +10,13 @@ resource "kubernetes_deployment" "node" {
     replicas = 1
     selector {
       match_labels = {
-        App = "ScalablenodeExample"
+        App = "ScalableflaskExample"
       }
     }
     template {
       metadata {
         labels = {
-          App = "ScalablenodeExample"
+          App = "ScalableflaskExample"
         }
       }
       spec {
@@ -54,13 +54,13 @@ resource "kubernetes_deployment" "node" {
   }
 }
 
-resource "kubernetes_service" "node" {
+resource "kubernetes_service" "flask" {
   metadata {
-    name = "node-example"
+    name = "flask-example"
   }
   spec {
     selector = {
-      App = kubernetes_deployment.node.spec.0.template.0.metadata[0].labels.App
+      App = kubernetes_deployment.flask.spec.0.template.0.metadata[0].labels.App
     }
     port {
       port        = 80
