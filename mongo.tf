@@ -12,7 +12,7 @@ resource "aws_instance" "mongo" {
 resource "aws_subnet" "public_subnet" {
   count             = 1
   vpc_id            = module.vpc.vpc_id
-  cidr_block        = "10.1.1.0/24"
+  cidr_block        = "10.0.100.0/24"
   availability_zone = "us-east-2a"
   map_public_ip_on_launch = true
 }
