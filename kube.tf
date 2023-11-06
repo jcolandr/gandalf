@@ -1,24 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 4.48.0"
-    }
-
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.16.1"
-    }
-  }
-}
-
-# data "terraform_remote_state" "eks" {
-#   backend = "local"
-
-#   config = {
-#     path = "../learn-terraform-provision-eks-cluster/terraform.tfstate"
-#   }
-# }
 
 
 
