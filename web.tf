@@ -21,7 +21,7 @@ resource "kubernetes_deployment" "flask" {
       }
       spec {
         container {
-          image = "jcolandro/taskapp:1.2"
+          image = "jcolandro/taskapp:1.4"
           name  = "web"
 
           port {
