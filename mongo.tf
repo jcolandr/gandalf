@@ -2,7 +2,7 @@ resource "aws_instance" "mongo" {
   ami           = var.ami_id
   instance_type = "t2.micro"
   key_name      = "jdc-aws" 
-  subnet_id     = "subnet-0a6ac5095a031997e" 
+  subnet_id     = "subnet-0bba23212dab3d1c4" 
   iam_instance_profile = aws_iam_instance_profile.hp.name
 
   tags = {
