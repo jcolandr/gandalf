@@ -2,12 +2,19 @@ resource "aws_instance" "mongo" {
   ami           = var.ami_id
   instance_type = "t2.small"
   key_name      = "jdc-aws" 
-  subnet_id     = "subnet-0bba23212dab3d1c4" 
+  subnet_id     = aws_subnet.public_subnet[0].id 
   iam_instance_profile = aws_iam_instance_profile.hp.name
 
   tags = {
     Name = "MongoDB-VM"
   }
+}
+resource "aws_subnet" "public_subnet" {
+  count             = 1
+  vpc_id            = module.vpc.vpc_id
+  cidr_block        = "10.1.1.0/24"
+  availability_zone = "us-east-2a"
+  map_public_ip_on_launch = true
 }
 
 # Example security group to allow SSH and MongoDB access
