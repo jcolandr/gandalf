@@ -26,7 +26,7 @@ output "instance_public_ip" {
 }
 
 output "instance_internal_ip" {
-  value = aws_instance.mongo.internal_ip
+  value = aws_instance.mongo.private_ip
 }
 
 output "nginx_ip" {
