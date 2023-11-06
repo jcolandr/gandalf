@@ -12,7 +12,7 @@ resource "aws_instance" "mongo" {
 
 # Example security group to allow SSH and MongoDB access
 resource "aws_security_group" "mongo-vm-sg" {
-  name        = "example-security-group"
+  name        = "mongo-vm-security-group"
   description = "Allow SSH and MongoDB access"
 
   ingress {
@@ -37,7 +37,7 @@ resource "aws_security_group" "mongo-vm-sg" {
   }
 
   tags = {
-    Name = "example-security-group"
+    Name = "mongo-vm-security-group"
   }
 }
 
