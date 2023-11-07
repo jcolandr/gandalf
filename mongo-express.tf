@@ -30,17 +30,17 @@ resource "kubernetes_deployment" "mongoexpress" {
 
           env {
             name = "ME_CONFIG_MONGODB_SERVER"
-            value = "3.145.34.154/gandalf"
+            value = "3.145.34.154"
           }
           
           env {
             name = "MONGME_CONFIG_MONGODB_ADMINUSERNAMEO_PORT"
-            value = "frodo"
+            value = "root"
           }
 
           env {
             name = "ME_CONFIG_MONGODB_ADMINPASSWORD"
-            value = "baggins"
+            value = "vgK:E3081khL"
           }
 
           # resources {
