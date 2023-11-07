@@ -38,16 +38,16 @@ resource "kubernetes_deployment" "flask" {
           #   value = "27017"
           # }
 
-          resources {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
-          }
+          # resources {
+          #   limits = {
+          #     cpu    = "0.5"
+          #     memory = "512Mi"
+          #   }
+          #   requests = {
+          #     cpu    = "250m"
+          #     memory = "50Mi"
+          #   }
+          # }
         }
       }
     }
@@ -63,7 +63,7 @@ resource "kubernetes_service" "flask" {
       App = kubernetes_deployment.flask.spec.0.template.0.metadata[0].labels.App
     }
     port {
-      port        = 80
+      port        = 8080
       target_port = 5000
     }
 
