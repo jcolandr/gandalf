@@ -29,10 +29,10 @@ output "instance_internal_ip" {
   value = aws_instance.mongo.private_ip
 }
 
-output "nginx_ip" {
-  value = kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.hostname
+output "dlogo_ip" {
+  value = kubernetes_service.dlogo.status.0.load_balancer.0.ingress.0.hostname
 }
 
-output "flask_ip" {
-  value = kubernetes_service.flask.status.0.load_balancer.0.ingress.0.hostname
+output "mongoexpress_ip" {
+  value = kubernetes_service.mongoexpress.status.0.load_balancer.0.ingress.0.hostname
 }

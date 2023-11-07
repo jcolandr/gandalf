@@ -20,11 +20,11 @@ provider "kubernetes" {
   }
 }
 
-resource "kubernetes_deployment" "nginx" {
+resource "kubernetes_deployment" "dlogo" {
   metadata {
-    name = "scalable-nginx-example"
+    name = "scalable-dlogo-example"
     labels = {
-      App = "ScalableNginxExample"
+      App = "ScalabledlogoExample"
     }
   }
 
@@ -32,19 +32,19 @@ resource "kubernetes_deployment" "nginx" {
     replicas = 3
     selector {
       match_labels = {
-        App = "ScalableNginxExample"
+        App = "ScalabledlogoExample"
       }
     }
     template {
       metadata {
         labels = {
-          App = "ScalableNginxExample"
+          App = "ScalabledlogoExample"
         }
       }
       spec {
         container {
           image = "jcolandro/dlogo:1.5"
-          name  = "example"
+          name  = "dlogo"
 
           port {
             container_port = 80
@@ -66,13 +66,13 @@ resource "kubernetes_deployment" "nginx" {
   }
 }
 
-resource "kubernetes_service" "nginx" {
+resource "kubernetes_service" "dlogo" {
   metadata {
-    name = "nginx-example"
+    name = "dlogo-example"
   }
   spec {
     selector = {
-      App = kubernetes_deployment.nginx.spec.0.template.0.metadata[0].labels.App
+      App = kubernetes_deployment.dlogo.spec.0.template.0.metadata[0].labels.App
     }
     port {
       port        = 80
