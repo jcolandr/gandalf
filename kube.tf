@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "nginx" {
   }
 
   spec {
-    replicas = 2
+    replicas = 3
     selector {
       match_labels = {
         App = "ScalableNginxExample"
@@ -43,7 +43,7 @@ resource "kubernetes_deployment" "nginx" {
       }
       spec {
         container {
-          image = "jcolandro/dlogo:1.4"
+          image = "jcolandro/dlogo:1.5"
           name  = "example"
 
           port {
