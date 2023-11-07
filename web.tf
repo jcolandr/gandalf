@@ -7,7 +7,7 @@ resource "kubernetes_deployment" "flask" {
   }
 
   spec {
-    replicas = 1
+    replicas = 3
     selector {
       match_labels = {
         App = "ScalableflaskExample"
@@ -21,7 +21,7 @@ resource "kubernetes_deployment" "flask" {
       }
       spec {
         container {
-          image = "jcolandro/taskapp:1.5"
+          image = "jcolandro/taskapp:1.6"
           name  = "web"
 
           port {
