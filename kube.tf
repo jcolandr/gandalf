@@ -43,7 +43,7 @@ resource "kubernetes_deployment" "nginx" {
       }
       spec {
         container {
-          image = "jcolandro/dlogo:1.1"
+          image = "jcolandro/dlogo:1.4"
           name  = "example"
 
           port {
