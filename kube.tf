@@ -20,67 +20,67 @@ provider "kubernetes" {
   }
 }
 
-resource "kubernetes_deployment" "dlogo" {
-  metadata {
-    name = "scalable-dlogo-example"
-    labels = {
-      App = "ScalabledlogoExample"
-    }
-  }
+# resource "kubernetes_deployment" "dlogo" {
+#   metadata {
+#     name = "scalable-dlogo-example"
+#     labels = {
+#       App = "ScalabledlogoExample"
+#     }
+#   }
 
-  spec {
-    replicas = 3
-    selector {
-      match_labels = {
-        App = "ScalabledlogoExample"
-      }
-    }
-    template {
-      metadata {
-        labels = {
-          App = "ScalabledlogoExample"
-        }
-      }
-      spec {
-        container {
-          image = "jcolandro/dlogo:1.5"
-          name  = "dlogo"
+#   spec {
+#     replicas = 3
+#     selector {
+#       match_labels = {
+#         App = "ScalabledlogoExample"
+#       }
+#     }
+#     template {
+#       metadata {
+#         labels = {
+#           App = "ScalabledlogoExample"
+#         }
+#       }
+#       spec {
+#         container {
+#           image = "jcolandro/dlogo:1.5"
+#           name  = "dlogo"
 
-          port {
-            container_port = 80
-          }
+#           port {
+#             container_port = 80
+#           }
 
-          resources {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
-          }
-        }
-      }
-    }
-  }
-}
+#           resources {
+#             limits = {
+#               cpu    = "0.5"
+#               memory = "512Mi"
+#             }
+#             requests = {
+#               cpu    = "250m"
+#               memory = "50Mi"
+#             }
+#           }
+#         }
+#       }
+#     }
+#   }
+# }
 
-resource "kubernetes_service" "dlogo" {
-  metadata {
-    name = "dlogo-example"
-  }
-  spec {
-    selector = {
-      App = kubernetes_deployment.dlogo.spec.0.template.0.metadata[0].labels.App
-    }
-    port {
-      port        = 80
-      target_port = 80
-    }
+# resource "kubernetes_service" "dlogo" {
+#   metadata {
+#     name = "dlogo-example"
+#   }
+#   spec {
+#     selector = {
+#       App = kubernetes_deployment.dlogo.spec.0.template.0.metadata[0].labels.App
+#     }
+#     port {
+#       port        = 80
+#       target_port = 80
+#     }
 
-    type = "LoadBalancer"
-  }
-}
+#     type = "LoadBalancer"
+#   }
+# }
 
 

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskapp1
+  labels:
+    app: taskapp1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskapp1
+  template:
+    metadata:
+      labels:
+        app: taskapp1
+    spec:
+      containers:
+        - name: taskapp1
+          image: jcolandro/taskapp:1.4
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+
+
