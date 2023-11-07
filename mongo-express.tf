@@ -30,7 +30,7 @@ resource "kubernetes_deployment" "mongoexpress" {
 
           env {
             name = "ME_CONFIG_MONGODB_SERVER"
-            value = "3.145.34.154"
+            value = "3.145.34.154/gandalf"
           }
           
           env {
